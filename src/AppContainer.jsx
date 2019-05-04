@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import * as actions from './ducks/actions';
+import { mapDispatchToProps } from './ducks/actions';
 
 import InitQuiz from './components/InitQuiz';
 import Leaderboard from './components/Leaderboard';
@@ -38,4 +38,4 @@ export default class App extends React.Component {
     }
 };
 
-export const AppContainer = connect(state => state, actions)(App);
+export const AppContainer = connect(state => state, mapDispatchToProps)(App);
