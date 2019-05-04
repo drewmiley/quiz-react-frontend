@@ -12,7 +12,7 @@ module.exports = {
     app: ['babel-polyfill', './src/index.jsx']
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.ts']
+    extensions: ['.js', '.jsx']
   },
   devtool: "source-map",
   module: {
@@ -25,13 +25,6 @@ module.exports = {
           options: {
            presets: ['env', 'es2015', 'react']
           }
-        }
-      },
-      {
-        test: /\.ts$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "awesome-typescript-loader"
         }
       },
       { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
