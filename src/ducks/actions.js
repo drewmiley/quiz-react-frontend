@@ -7,13 +7,22 @@ const setNumberAction = number => {
     }
 }
 
+const setNumber = number => dispatch => {
+    dispatch(setNumberAction(number));
+};
+
 export const mapDispatchToProps = dispatch => ({
     setNumber: number => dispatch(setNumber(number)),
-    loadQuiz: () => dispatch(loadQuiz()),
-    generateQuiz: () => dispatch(generateQuiz()),
-    setAnswer: () => dispatch(setAnswer()),
-    submitAnswers: () => dispatch(submitAnswers())
+    loadQuiz: code => dispatch(loadQuiz()),
+    generateQuiz: options => dispatch(generateQuiz()),
+    setAnswer: (question, answer) => dispatch(setAnswer()),
+    submitAnswers: user => dispatch(submitAnswers())
 });
+
+// export const LOAD_QUIZ = 'LOAD_QUIZ';
+// export const GENERATE_QUIZ = 'GENERATE_QUIZ';
+// export const SET_ANSWER = 'SET_ANSWER';
+// export const SUBMIT_ANSWERS = 'SUBMIT_ANSWERS';
 
 // const fetchData = () => dispatch => {
 //     const url = 'https://randomuser.me/api/';
@@ -34,22 +43,46 @@ export const mapDispatchToProps = dispatch => ({
 //     user
 // });
 
-const setNumber = number => dispatch => {
-    dispatch(setNumberAction(number));
+const loadQuiz = code => dispatch => {
+    const loadQuizAction = (quiz, code, leaderboard) => {
+        return {
+            type: actiontypes.LOAD_QUIZ,
+            quiz,
+            code,
+            leaderboard
+        }
+    }
+    dispatch(loadQuizAction(null, code, null));
 };
 
-const loadQuiz = () => dispatch => {
-    dispatch(setNumberAction(1));
+const generateQuiz = options => dispatch => {
+    const generateQuizAction = (quiz, code) => {
+        return {
+            type: actiontypes.GENERATE_QUIZ,
+            quiz,
+            code
+        }
+    }
+    dispatch(generateQuizAction(null, null));
 };
 
-const generateQuiz = () => dispatch => {
-    dispatch(setNumberAction(1));
+const setAnswer = (question, answer) => dispatch => {
+    const setAnswerAction = (question, answer) => {
+        return {
+            type: actiontypes.SET_ANSWER,
+            question,
+            answer
+        }
+    }
+    dispatch(setAnswerAction(question, answer));
 };
 
-const setAnswer = () => dispatch => {
-    dispatch(setNumberAction(1));
-};
-
-const submitAnswers = () => dispatch => {
-    dispatch(setNumberAction(1));
+const submitAnswers = user => dispatch => {
+    const submitAnswersAction = leaderboard => {
+        return {
+            type: actiontypes.SUBMIT_ANSWERS,
+            leaderboard
+        }
+    }
+    dispatch(submitAnswersAction(null));
 };
