@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {connect} from 'react-redux';
 
 import { mapDispatchToProps } from './ducks/actions';
@@ -12,20 +12,25 @@ import ClickMe from './components/ClickMe';
 import NumeralDisplay from './components/NumeralDisplay';
 import FetchRandomUsers from './components/FetchRandomUsers';
 
-export default class App extends React.Component {
+export default class App extends Component {
     render() {
         return <div>
             <InitQuiz
-
+                loadQuiz={this.props.loadQuiz}
+                generateQuiz={this.props.generateQuiz}
             />
             <QuizArea
-
+                setAnswer={this.props.setAnswer}
+                code={this.props.code}
+                quiz={this.props.quiz}
             />
             <SubmitAnswers
-
+                submitAnswers={this.props.submitAnswers}
+                code={this.props.code}
+                answers={this.props.answers}
             />
             <Leaderboard
-
+                leaderboard={this.props.leaderboard}
             />
             <ClickMe
                 setNumber={this.props.setNumber}

@@ -1,6 +1,6 @@
 import * as actiontypes from './actiontypes';
 
-const setNumber = number => {
+const setNumberAction = number => {
     return {
         type: actiontypes.SET_NUMBER,
         number
@@ -8,7 +8,11 @@ const setNumber = number => {
 }
 
 export const mapDispatchToProps = dispatch => ({
-    setNumber: number => dispatch(actionSetNumber(number))
+    setNumber: number => dispatch(setNumber(number)),
+    loadQuiz: () => dispatch(loadQuiz()),
+    generateQuiz: () => dispatch(generateQuiz()),
+    setAnswer: () => dispatch(setAnswer()),
+    submitAnswers: () => dispatch(submitAnswers())
 });
 
 // const fetchData = () => dispatch => {
@@ -30,6 +34,22 @@ export const mapDispatchToProps = dispatch => ({
 //     user
 // });
 
-const actionSetNumber = number => dispatch => {
-    dispatch(setNumber(number));
+const setNumber = number => dispatch => {
+    dispatch(setNumberAction(number));
+};
+
+const loadQuiz = () => dispatch => {
+    dispatch(setNumberAction(1));
+};
+
+const generateQuiz = () => dispatch => {
+    dispatch(setNumberAction(1));
+};
+
+const setAnswer = () => dispatch => {
+    dispatch(setNumberAction(1));
+};
+
+const submitAnswers = () => dispatch => {
+    dispatch(setNumberAction(1));
 };

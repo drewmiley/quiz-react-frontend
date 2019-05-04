@@ -13,6 +13,7 @@ export default class QuizArea extends Component {
     render() {
         return (
             <div id="quiz-area">
+                <div id="quiz-code">QUIZ CODE</div>
                 {[0, 1].map(d =>
                     <Question
 
