@@ -43,7 +43,9 @@ export const mapDispatchToProps = dispatch => ({
 //     user
 // });
 
-const loadQuiz = code => dispatch => {
+const loadQuiz = code => async dispatch => {
+    const response = await fetch('https://randomuser.me/api/?results=2');
+    const json = await response.json();
     const loadQuizAction = (quiz, code, leaderboard) => {
         return {
             type: actiontypes.LOAD_QUIZ,
@@ -55,7 +57,9 @@ const loadQuiz = code => dispatch => {
     dispatch(loadQuizAction(null, code, null));
 };
 
-const generateQuiz = options => dispatch => {
+const generateQuiz = options => async dispatch => {
+    const response = await fetch('https://randomuser.me/api/?results=2');
+    const json = await response.json();
     const generateQuizAction = (quiz, code) => {
         return {
             type: actiontypes.GENERATE_QUIZ,
@@ -77,7 +81,9 @@ const setAnswer = (question, answer) => dispatch => {
     dispatch(setAnswerAction(question, answer));
 };
 
-const submitAnswers = user => dispatch => {
+const submitAnswers = user => async dispatch => {
+    const response = await fetch('https://randomuser.me/api/?results=2');
+    const json = await response.json();
     const submitAnswersAction = leaderboard => {
         return {
             type: actiontypes.SUBMIT_ANSWERS,
