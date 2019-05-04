@@ -1,7 +1,9 @@
 import * as actiontypes from './actiontypes';
 
 const setNumber = (state, number) => {
-    return Object.assign({}, { number });
+    let newState = Object.assign({}, state);
+    newState.number = number;
+    return newState;
 }
 
 export default function(state = {}, action) {
