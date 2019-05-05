@@ -14,7 +14,7 @@ export default class QuizArea extends Component {
         return (
             <div id="quiz-area">
                 <div id="quiz-code">QUIZ CODE</div>
-                {[0, 1].map(d =>
+                {this.props.quiz.map(d =>
                     <Question
 
                     />

@@ -15,10 +15,10 @@ export default class InitQuiz extends Component {
         return (
             <div id="quiz-init">
                 <LoadQuiz
-
+                    loadQuiz={this.props.loadQuiz}
                 />
                 <GenerateQuiz
-
+                    generateQuiz={this.props.generateQuiz}
                 />
             </div>
         );
