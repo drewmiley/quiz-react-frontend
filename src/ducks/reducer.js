@@ -1,11 +1,5 @@
 import * as actiontypes from './actiontypes';
 
-const setNumber = (state, number) => {
-    let newState = Object.assign({}, state);
-    newState.number = number;
-    return newState;
-}
-
 const loadQuiz = (state, quiz, code, leaderboard) => {
     let newState = Object.assign({}, state);
     newState.quiz = quiz;
@@ -35,16 +29,14 @@ const submitAnswers = (state, leaderboard) => {
 
 export default function(state = {}, action) {
     switch (action.type) {
-        case actiontypes.SET_NUMBER:
-            return setNumber(state, action.number);
         case actiontypes.LOAD_QUIZ:
-            return loadQuiz(state);
+            return loadQuiz(state, action.quiz, action.code, action.leaderboard);
         case actiontypes.GENERATE_QUIZ:
-            return generateQuiz(state);
+            return generateQuiz(state, action.quiz, action.code);
         case actiontypes.SET_ANSWER:
-            return setAnswer(state);
+            return setAnswer(state, action.question, action.answer);
         case actiontypes.SUBMIT_ANSWERS:
-            return submitAnswers(state);
+            return submitAnswers(state, action.leaderboard);
         default:
             return state;
     }

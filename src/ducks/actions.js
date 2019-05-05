@@ -1,18 +1,6 @@
 import * as actiontypes from './actiontypes';
 
-const setNumberAction = number => {
-    return {
-        type: actiontypes.SET_NUMBER,
-        number
-    }
-}
-
-const setNumber = number => dispatch => {
-    dispatch(setNumberAction(number));
-};
-
 export const mapDispatchToProps = dispatch => ({
-    setNumber: number => dispatch(setNumber(number)),
     loadQuiz: code => dispatch(loadQuiz(code)),
     generateQuiz: options => dispatch(generateQuiz(options)),
     setAnswer: (question, answer) => dispatch(setAnswer(question, answer)),

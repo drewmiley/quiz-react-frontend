@@ -8,10 +8,6 @@ import Leaderboard from './components/Leaderboard';
 import QuizArea from './components/QuizArea';
 import SubmitAnswers from './components/SubmitAnswers';
 
-import ClickMe from './components/ClickMe';
-import NumeralDisplay from './components/NumeralDisplay';
-import FetchRandomUsers from './components/FetchRandomUsers';
-
 export default class App extends Component {
     render() {
         return <div>
@@ -32,13 +28,6 @@ export default class App extends Component {
             <Leaderboard
                 leaderboard={this.props.leaderboard}
             />
-            <ClickMe
-                setNumber={this.props.setNumber}
-            />
-            <NumeralDisplay
-                number={this.props.number}
-            />
-            <FetchRandomUsers />
         </div>
     }
 };
