@@ -13,39 +13,17 @@ const setNumber = number => dispatch => {
 
 export const mapDispatchToProps = dispatch => ({
     setNumber: number => dispatch(setNumber(number)),
-    loadQuiz: code => dispatch(loadQuiz()),
-    generateQuiz: options => dispatch(generateQuiz()),
-    setAnswer: (question, answer) => dispatch(setAnswer()),
-    submitAnswers: user => dispatch(submitAnswers())
+    loadQuiz: code => dispatch(loadQuiz(code)),
+    generateQuiz: options => dispatch(generateQuiz(options)),
+    setAnswer: (question, answer) => dispatch(setAnswer(question, answer)),
+    submitAnswers: (code, user, answers) => dispatch(submitAnswers(code, user, answers))
 });
 
-// export const LOAD_QUIZ = 'LOAD_QUIZ';
-// export const GENERATE_QUIZ = 'GENERATE_QUIZ';
-// export const SET_ANSWER = 'SET_ANSWER';
-// export const SUBMIT_ANSWERS = 'SUBMIT_ANSWERS';
-
-// const fetchData = () => dispatch => {
-//     const url = 'https://randomuser.me/api/';
-//     fetch(url)
-//         .then(response => {
-//             if (!response.ok) {
-//                 throw Error(response.statusText);
-//             }
-//             return response;
-//         })
-//         .then(response => response.json())
-//         .then(response => response.results[0])
-//         .then(user => dispatch(fetchDataSuccess(user)));
-// };
-
-// const fetchDataSuccess = user => ({
-//     type: 'FETCH_DATA_SUCCESS',
-//     user
-// });
-
 const loadQuiz = code => async dispatch => {
-    const response = await fetch('https://randomuser.me/api/?results=2');
-    const json = await response.json();
+    const quizResponse = await fetch(`http://localhost:8080/api/quiz/${ code }`);
+    const quiz = await quizResponse.json();
+    const leaderboardResponse = await fetch(`http://localhost:8080/api/leaderboard/${ code }`);
+    const leaderboard = await leaderboardResponse.json();
     const loadQuizAction = (quiz, code, leaderboard) => {
         return {
             type: actiontypes.LOAD_QUIZ,
@@ -54,12 +32,13 @@ const loadQuiz = code => async dispatch => {
             leaderboard
         }
     }
-    dispatch(loadQuizAction(null, code, null));
+    dispatch(loadQuizAction(quiz.quiz, code, leaderboard.leaderboard));
 };
 
 const generateQuiz = options => async dispatch => {
-    const response = await fetch('https://randomuser.me/api/?results=2');
-    const json = await response.json();
+    const quizResponse = await fetch('http://localhost:8080/api/newquiz',
+        { method: "POST", body: { options }, headers: { "Content-Type": "application/x-www-form-urlencoded" }});
+    const quiz = await quizResponse.json();
     const generateQuizAction = (quiz, code) => {
         return {
             type: actiontypes.GENERATE_QUIZ,
@@ -67,7 +46,7 @@ const generateQuiz = options => async dispatch => {
             code
         }
     }
-    dispatch(generateQuizAction(null, null));
+    dispatch(generateQuizAction(quiz.quiz, quiz.code));
 };
 
 const setAnswer = (question, answer) => dispatch => {
@@ -81,14 +60,17 @@ const setAnswer = (question, answer) => dispatch => {
     dispatch(setAnswerAction(question, answer));
 };
 
-const submitAnswers = user => async dispatch => {
-    const response = await fetch('https://randomuser.me/api/?results=2');
-    const json = await response.json();
+const submitAnswers = (code, user, answers) => async dispatch => {
+    const submitAnswersResponse = await fetch(`http://localhost:8080/api/answers/${ code }/${ user }`,
+        { method: "POST", body: { answers }, headers: { "Content-Type": "application/x-www-form-urlencoded" }});
+    const submitAnswers = await submitAnswersResponse.json();
+    const leaderboardResponse = await fetch(`http://localhost:8080/api/leaderboard/${ code }`);
+    const leaderboard = await leaderboardResponse.json();
     const submitAnswersAction = leaderboard => {
         return {
             type: actiontypes.SUBMIT_ANSWERS,
             leaderboard
         }
     }
-    dispatch(submitAnswersAction(null));
+    dispatch(submitAnswersAction(leaderboard.leaderboard));
 };
