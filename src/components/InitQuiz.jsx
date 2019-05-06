@@ -7,7 +7,7 @@ export default class InitQuiz extends Component {
     constructor(props) {
         super(props);
         this.shouldComponentUpdate = (nextProps, nextState) => {
-            return false;
+            return true;
         };
     }
 

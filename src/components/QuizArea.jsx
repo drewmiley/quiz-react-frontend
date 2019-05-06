@@ -6,17 +6,18 @@ export default class QuizArea extends Component {
     constructor(props) {
         super(props);
         this.shouldComponentUpdate = (nextProps, nextState) => {
-            return false;
+            return true;
         };
     }
 
     render() {
         return (
             <div id="quiz-area">
-                <div id="quiz-code">QUIZ CODE</div>
+                <div id="quiz-code">{this.props.code}</div>
                 {this.props.quiz.map(d =>
                     <Question
-
+                        setAnswer={this.props.setAnswer}
+                        question={d}
                     />
                 )}
             </div>
