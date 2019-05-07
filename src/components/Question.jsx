@@ -17,7 +17,10 @@ export default class Question extends Component {
                 </h3>
                 <div>
                     {this.props.answers.map((answer, i) =>
-                        <button key={i} onClick={() => this.props.setAnswer(this.props.question, answer)}>
+                        <button
+                            key={i}
+                            onClick={() => this.props.setAnswer(this.props.question, answer)}
+                            style={this.props.selectedAnswer ? { backgroundColor: answer == this.props.selectedAnswer.answer ? 'lightblue': 'white' } : {}}>
                             {decode(answer)}
                         </button>
                     )}

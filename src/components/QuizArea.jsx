@@ -19,6 +19,7 @@ export default class QuizArea extends Component {
                         key={i}
                         setAnswer={this.props.setAnswer}
                         question={d.question}
+                        selectedAnswer={this.props.answers.find(qa => qa.question == d.question)}
                         answers={[d.answer].concat(d.incorrectAnswers).sort(() => 0.5 - Math.random())}
                     />
                 )}

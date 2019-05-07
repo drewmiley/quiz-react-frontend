@@ -19,6 +19,7 @@ export default class App extends Component {
                 setAnswer={this.props.setAnswer}
                 code={this.props.code}
                 quiz={this.props.quiz}
+                answers={this.props.answers}
             />
             <SubmitAnswers
                 submitAnswers={this.props.submitAnswers}
