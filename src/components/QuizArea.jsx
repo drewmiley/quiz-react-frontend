@@ -17,7 +17,8 @@ export default class QuizArea extends Component {
                 {this.props.quiz.map(d =>
                     <Question
                         setAnswer={this.props.setAnswer}
-                        question={d}
+                        question={d.question}
+                        answers={[d.answer].concat(d.incorrectAnswers).sort(() => 0.5 - Math.random())}
                     />
                 )}
             </div>
