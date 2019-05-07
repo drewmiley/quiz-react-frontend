@@ -17,7 +17,12 @@ const generateQuiz = (state, quiz, code) => {
 
 const setAnswer = (state, question, answer) => {
     let newState = Object.assign({}, state);
-    // TODO: Implement
+    const answers = newState.answers.find(d => d.question == question) ?
+        newState.answers.map(d => {
+            return d.question == question ? { question, answer } : d;
+        }) :
+        newState.answers.concat([{ question, answer }]);
+    newState.answers = answers;
     return newState;
 }
 

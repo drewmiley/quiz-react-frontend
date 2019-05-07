@@ -15,8 +15,11 @@ export default class Question extends Component {
                     {this.props.question}
                 </h3>
                 <div>
-                    {this.props.answers.map(answer =>
-                        <div>{answer}</div>
+                    {this.props.answers.map((answer, i) =>
+                        <div>
+                            <div>{answer}</div>
+                            <button onClick={() => this.props.setAnswer(this.props.question, this.props.answers[i])}>Option {i}</button>
+                        </div>
                     )}
                 </div>
             </div>
