@@ -4,14 +4,16 @@ export default class Leaderboard extends Component {
     constructor(props) {
         super(props);
         this.shouldComponentUpdate = (nextProps, nextState) => {
-            return false;
+            return true;
         };
     }
 
     render() {
         return (
             <div id="leaderboard">
-                Leaderboard
+                {this.props.leaderboard.results.map(d =>
+                    <div>{d.user} - {d.score}</div>
+                )}
             </div>
         );
     }
