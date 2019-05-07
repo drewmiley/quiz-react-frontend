@@ -25,7 +25,7 @@ const loadQuiz = code => async dispatch => {
 
 const generateQuiz = options => async dispatch => {
     const quizResponse = await fetch('http://localhost:8080/api/newquiz',
-        { method: "POST", body: { options }, headers: { "Content-Type": "application/x-www-form-urlencoded" }});
+        { method: "POST", body: JSON.stringify({ options }), headers: { "Accept": "application/json", "Content-Type": "application/json" }});
     const quiz = await quizResponse.json();
     const generateQuizAction = (quiz, code) => {
         return {
@@ -50,7 +50,7 @@ const setAnswer = (question, answer) => dispatch => {
 
 const submitAnswers = (code, user, answers) => async dispatch => {
     const submitAnswersResponse = await fetch(`http://localhost:8080/api/answers/${ code }/${ user }`,
-        { method: "POST", body: { answers }, headers: { "Content-Type": "application/x-www-form-urlencoded" }});
+        { method: "POST", body: JSON.stringify({ answers }), headers: { "Accept": "application/json", "Content-Type": "application/json" }});
     const submitAnswers = await submitAnswersResponse.json();
     const leaderboardResponse = await fetch(`http://localhost:8080/api/leaderboard/${ code }`);
     const leaderboard = await leaderboardResponse.json();
@@ -60,5 +60,5 @@ const submitAnswers = (code, user, answers) => async dispatch => {
             leaderboard
         }
     }
-    dispatch(submitAnswersAction(leaderboard.leaderboard.results));
+    dispatch(submitAnswersAction(leaderboard.results));
 };
