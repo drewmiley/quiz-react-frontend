@@ -57,7 +57,7 @@ const submitAnswers = (code, user, answers) => async dispatch => {
     const submitAnswersAction = leaderboard => {
         return {
             type: actiontypes.SUBMIT_ANSWERS,
-            leaderboard
+            leaderboard: leaderboard.results
         }
     }
     dispatch(submitAnswersAction(leaderboard.leaderboard));
