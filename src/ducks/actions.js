@@ -20,7 +20,7 @@ const loadQuiz = code => async dispatch => {
             leaderboard
         }
     }
-    dispatch(loadQuizAction(quiz.quiz, code, leaderboard.leaderboard));
+    dispatch(loadQuizAction(quiz.quiz, code, leaderboard.results));
 };
 
 const generateQuiz = options => async dispatch => {
@@ -57,8 +57,8 @@ const submitAnswers = (code, user, answers) => async dispatch => {
     const submitAnswersAction = leaderboard => {
         return {
             type: actiontypes.SUBMIT_ANSWERS,
-            leaderboard: leaderboard.results
+            leaderboard
         }
     }
-    dispatch(submitAnswersAction(leaderboard.leaderboard));
+    dispatch(submitAnswersAction(leaderboard.leaderboard.results));
 };
