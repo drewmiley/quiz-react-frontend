@@ -9,7 +9,7 @@ module.exports = {
   target: "web",
   mode: "development",
   entry: {
-    app: ['babel-polyfill', './src/index.jsx']
+    app: ['@babel/polyfill', './src/index.jsx']
   },
   resolve: {
     extensions: ['.js', '.jsx']
@@ -23,7 +23,7 @@ module.exports = {
         use: {
           loader: "babel-loader",
           options: {
-           presets: ['env', 'es2015', 'react']
+            presets: ["@babel/preset-env", "@babel/preset-react"]
           }
         }
       },

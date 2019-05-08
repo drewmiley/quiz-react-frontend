@@ -10,7 +10,7 @@ import SubmitAnswers from './components/SubmitAnswers';
 
 export default class App extends Component {
     render() {
-        return <div>
+        return <>
             <InitQuiz
                 loadQuiz={this.props.loadQuiz}
                 generateQuiz={this.props.generateQuiz}
@@ -29,7 +29,7 @@ export default class App extends Component {
             <Leaderboard
                 leaderboard={this.props.leaderboard}
             />
-        </div>
+        </>
     }
 };
 
