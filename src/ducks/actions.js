@@ -1,7 +1,9 @@
 import { decode } from 'he';
 import * as actiontypes from './actiontypes';
 
-const endpoint = process.env.ENDPOINT || `http://localhost:8080`;
+const endpoint = process.env.NODE_ENV == 'production' ?
+    'https://quiz-node-backend.herokuapp.com' :
+    'http://localhost:8080';
 
 export const mapDispatchToProps = dispatch => ({
     loadQuiz: code => dispatch(loadQuiz(code)),
