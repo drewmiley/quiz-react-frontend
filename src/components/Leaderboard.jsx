@@ -11,7 +11,7 @@ export default class Leaderboard extends Component {
     render() {
         return (
             <div id="leaderboard">
-                {this.props.leaderboard.map((d, i) =>
+                {this.props.leaderboard.sort((a, b) => b.score - a.score).map((d, i) =>
                     <div key={i}>{d.user} - {d.score}</div>
                 )}
             </div>
