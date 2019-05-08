@@ -1,6 +1,8 @@
 import { decode } from 'he';
 import * as actiontypes from './actiontypes';
 
+const endpoint = process.env.ENDPOINT || `http://localhost:8080`;
+
 export const mapDispatchToProps = dispatch => ({
     loadQuiz: code => dispatch(loadQuiz(code)),
     generateQuiz: options => dispatch(generateQuiz(options)),
@@ -16,9 +18,9 @@ const decodeQuiz = quiz => quiz
     }))
 
 const loadQuiz = code => async dispatch => {
-    const quizResponse = await fetch(`http://localhost:8080/api/quiz/${ code }`);
+    const quizResponse = await fetch(`${ endpoint }/api/quiz/${ code }`);
     const quiz = await quizResponse.json();
-    const leaderboardResponse = await fetch(`http://localhost:8080/api/leaderboard/${ code }`);
+    const leaderboardResponse = await fetch(`${ endpoint }/api/leaderboard/${ code }`);
     const leaderboard = await leaderboardResponse.json();
     const loadQuizAction = (quiz, code, leaderboard) => {
         return {
@@ -32,7 +34,7 @@ const loadQuiz = code => async dispatch => {
 };
 
 const generateQuiz = options => async dispatch => {
-    const quizResponse = await fetch('http://localhost:8080/api/newquiz',
+    const quizResponse = await fetch(`${ endpoint }/api/newquiz`,
         { method: "POST", body: JSON.stringify({ options }), headers: { "Accept": "application/json", "Content-Type": "application/json" }});
     const quiz = await quizResponse.json();
     const generateQuizAction = (quiz, code) => {
@@ -57,10 +59,10 @@ const setAnswer = (question, answer) => dispatch => {
 };
 
 const submitAnswers = (code, user, answers) => async dispatch => {
-    const submitAnswersResponse = await fetch(`http://localhost:8080/api/answers/${ code }/${ user }`,
+    const submitAnswersResponse = await fetch(`${ endpoint }/api/answers/${ code }/${ user }`,
         { method: "POST", body: JSON.stringify({ answers }), headers: { "Accept": "application/json", "Content-Type": "application/json" }});
     const submitAnswers = await submitAnswersResponse.json();
-    const leaderboardResponse = await fetch(`http://localhost:8080/api/leaderboard/${ code }`);
+    const leaderboardResponse = await fetch(`${ endpoint }/api/leaderboard/${ code }`);
     const leaderboard = await leaderboardResponse.json();
     const submitAnswersAction = leaderboard => {
         return {
