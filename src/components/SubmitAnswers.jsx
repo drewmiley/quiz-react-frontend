@@ -10,7 +10,7 @@ export default props => {
     return (
         <div id="submit-answers">
             <input id="name" type="text" value={value} onChange={onChange} />
-            <button id="check-answers" onClick={onClick}>Load</button>
+            <button id="check-answers" onClick={onClick}>Submit Answers</button>
         </div>
     );
 }
