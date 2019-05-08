@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Leaderboard = props => {
+export default props => {
     return (
         <div id="leaderboard">
             {props.leaderboard.sort((a, b) => b.score - a.score).map((d, i) =>
@@ -9,5 +9,3 @@ const Leaderboard = props => {
         </div>
     );
 }
-
-export default Leaderboard;

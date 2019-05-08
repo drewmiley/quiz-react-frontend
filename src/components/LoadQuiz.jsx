@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const LoadQuiz = props => {
+export default props => {
     const [value, setValue] = useState('');
 
     const onChange = e => setValue(e.target.value);
@@ -14,5 +14,3 @@ const LoadQuiz = props => {
         </div>
     );
 }
-
-export default LoadQuiz;

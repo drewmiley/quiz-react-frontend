@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const SubmitAnswers = props => {
+export default props => {
     const [value, setValue] = useState('');
 
     const onChange = e => setValue(e.target.value);
@@ -14,5 +14,3 @@ const SubmitAnswers = props => {
         </div>
     );
 }
-
-export default SubmitAnswers;

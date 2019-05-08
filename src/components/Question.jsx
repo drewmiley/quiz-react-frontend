@@ -1,31 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { decode } from 'he';
 
-export default class Question extends Component {
-    constructor(props) {
-        super(props);
-        this.shouldComponentUpdate = (nextProps, nextState) => {
-            return true;
-        };
-    }
-
-    render() {
-        return (
-            <div id="quiz-question">
-                <h3>
-                    {decode(this.props.question)}
-                </h3>
-                <div>
-                    {this.props.answers.map((answer, i) =>
-                        <button
-                            key={i}
-                            onClick={() => this.props.setAnswer(this.props.question, answer)}
-                            style={this.props.selectedAnswer ? { backgroundColor: answer == this.props.selectedAnswer.answer ? 'lightblue': 'white' } : {}}>
-                            {decode(answer)}
-                        </button>
-                    )}
-                </div>
-            </div>
-        );
-    }
-};
+export default props => {
+    return (
+        <div id="quiz-question">
+            <h3>{decode(props.question)}</h3>
+            <>
+                {props.answers.map((answer, i) =>
+                    <button
+                        key={i}
+                        onClick={() => props.setAnswer(props.question, answer)}
+                        style={props.selectedAnswer ? { backgroundColor: answer == props.selectedAnswer.answer ? 'lightblue': 'white' } : {}}
+                    >
+                        {decode(answer)}
+                    </button>
+                )}
+            </>
+        </div>
+    );
+}
