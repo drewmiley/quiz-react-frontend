@@ -1,3 +1,4 @@
+import { decode } from 'he';
 import * as actiontypes from './actiontypes';
 
 export const mapDispatchToProps = dispatch => ({
@@ -6,6 +7,13 @@ export const mapDispatchToProps = dispatch => ({
     setAnswer: (question, answer) => dispatch(setAnswer(question, answer)),
     submitAnswers: (code, user, answers) => dispatch(submitAnswers(code, user, answers))
 });
+
+const decodeQuiz = quiz => quiz
+    .map(d => ({
+        question: decode(d.question),
+        answer: decode(d.answer),
+        incorrectAnswers: d.incorrectAnswers.map(ia => decode(ia))
+    }))
 
 const loadQuiz = code => async dispatch => {
     const quizResponse = await fetch(`http://localhost:8080/api/quiz/${ code }`);
@@ -20,7 +28,7 @@ const loadQuiz = code => async dispatch => {
             leaderboard
         }
     }
-    dispatch(loadQuizAction(quiz.quiz, code, leaderboard.results));
+    dispatch(loadQuizAction(decodeQuiz(quiz.quiz), code, leaderboard.results));
 };
 
 const generateQuiz = options => async dispatch => {
@@ -34,7 +42,7 @@ const generateQuiz = options => async dispatch => {
             code
         }
     }
-    dispatch(generateQuizAction(quiz.quiz, quiz.code));
+    dispatch(generateQuizAction(decodeQuiz(quiz.quiz), quiz.code));
 };
 
 const setAnswer = (question, answer) => dispatch => {
