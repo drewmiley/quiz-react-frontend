@@ -32,6 +32,12 @@ const submitAnswers = (state, leaderboard) => {
     return newState;
 }
 
+const getLeaderboards = (state, leaderboards) => {
+    let newState = Object.assign({}, state);
+    newState.leaderboards = leaderboards;
+    return newState;
+}
+
 export default function(state = {}, action) {
     switch (action.type) {
         case actiontypes.LOAD_QUIZ:
@@ -42,6 +48,8 @@ export default function(state = {}, action) {
             return setAnswer(state, action.question, action.answer);
         case actiontypes.SUBMIT_ANSWERS:
             return submitAnswers(state, action.leaderboard);
+        case actiontypes.GET_LEADERBOARDS:
+            return getLeaderboards(state, action.leaderboards)
         default:
             return state;
     }

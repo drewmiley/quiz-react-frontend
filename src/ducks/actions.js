@@ -9,7 +9,8 @@ export const mapDispatchToProps = dispatch => ({
     loadQuiz: code => dispatch(loadQuiz(code)),
     generateQuiz: options => dispatch(generateQuiz(options)),
     setAnswer: (question, answer) => dispatch(setAnswer(question, answer)),
-    submitAnswers: (code, user, answers) => dispatch(submitAnswers(code, user, answers))
+    submitAnswers: (code, user, answers) => dispatch(submitAnswers(code, user, answers)),
+    getLeaderboards: user => dispatch(getLeaderboards(user))
 });
 
 const decodeQuiz = quiz => quiz
@@ -74,3 +75,15 @@ const submitAnswers = (code, user, answers) => async dispatch => {
     }
     dispatch(submitAnswersAction(leaderboard.results));
 };
+
+const getLeaderboards = user => async dispatch => {
+    const leaderboardsResponse = await fetch(`${ endpoint }/api/leaderboards${ user ? `?user=${ user }` : '' }`);
+    const leaderboards = await leaderboardsResponse.json();
+    const getLeaderboardsAction = leaderboards => {
+        return {
+            type: actiontypes.GET_LEADERBOARDS,
+            leaderboards
+        }
+    }
+    dispatch(getLeaderboardsAction(leaderboards))
+}

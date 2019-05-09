@@ -3,4 +3,10 @@ import thunk from 'redux-thunk';
 
 import reducer from './reducer';
 
-export default createStore(reducer, { code: '', quiz: [], leaderboard: [], answers: [] }, applyMiddleware(thunk));
+export default createStore(reducer, {
+    code: '',
+    quiz: [],
+    leaderboard: [],
+    leaderboards: [],
+    answers: []
+}, applyMiddleware(thunk));
