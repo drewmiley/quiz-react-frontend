@@ -8,6 +8,7 @@ export default props => {
         <div id="quiz-init">
             <LoadQuiz
                 loadQuiz={props.loadQuiz}
+                validQuizCodes={props.validQuizCodes}
             />
             <GenerateQuiz
                 generateQuiz={props.generateQuiz}

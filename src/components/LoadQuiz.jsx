@@ -9,6 +9,12 @@ export default props => {
 
     return (
         <div id="quiz-loader">
+            {props.validQuizCodes.map(code =>
+                <>
+                    <p>{code}</p>
+                    <p>CHANGE THIS INPUT TO A SELECT</p>
+                </>
+            )}
             <input id="code" type="text" value={value} onChange={onChange} />
             <button id="load" onClick={onClick}>Load</button>
         </div>
