@@ -8,5 +8,6 @@ export default createStore(reducer, {
     quiz: [],
     leaderboard: [],
     leaderboards: [],
-    answers: []
+    answers: [],
+    validQuizCodes: []
 }, applyMiddleware(thunk));
