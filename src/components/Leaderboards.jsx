@@ -16,10 +16,11 @@ export default props => {
                 <input id="name" type="text" value={value} onChange={onChange} />
                 <button id="get-leaderboards" onClick={onClick}>Get Leaderboards</button>
             </div>
-            {props.leaderboards.map(leaderboard =>
+            {props.leaderboards.map((leaderboard, i) =>
                 <Leaderboard
+                    key={i}
                     code={leaderboard.code}
-                    leaderboard={leaderboard.leaderboard}
+                    leaderboard={leaderboard.results}
                 />
             )}
         </div>

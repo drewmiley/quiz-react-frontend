@@ -77,12 +77,13 @@ const submitAnswers = (code, user, answers) => async dispatch => {
 };
 
 const getLeaderboards = user => async dispatch => {
-    // TODO: IMPLEMENT
+    const leaderboardsResponse = await fetch(`${ endpoint }/api/leaderboards${ user ? `?user=${ user }` : '' }`);
+    const leaderboards = await leaderboardsResponse.json();
     const getLeaderboardsAction = leaderboards => {
         return {
             type: actiontypes.GET_LEADERBOARDS,
             leaderboards
         }
     }
-    dispatch(getLeaderboardsAction([]))
+    dispatch(getLeaderboardsAction(leaderboards))
 }
