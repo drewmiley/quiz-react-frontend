@@ -5,6 +5,7 @@ import { mapDispatchToProps } from './ducks/actions';
 
 import InitQuiz from './components/InitQuiz';
 import Leaderboard from './components/Leaderboard';
+import Leaderboards from './components/Leaderboards';
 import QuizArea from './components/QuizArea';
 import SubmitAnswers from './components/SubmitAnswers';
 
@@ -27,7 +28,12 @@ export default class App extends Component {
                 answers={this.props.answers}
             />
             <Leaderboard
+                code={this.props.code}
                 leaderboard={this.props.leaderboard}
+            />
+            <Leaderboards
+                getLeaderboards={this.props.getLeaderboards}
+                leaderboards={this.props.leaderboards}
             />
         </>
     }
