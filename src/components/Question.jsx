@@ -9,7 +9,7 @@ export default props => {
                     <button
                         key={i}
                         onClick={() => props.setAnswer(props.question, answer)}
-                        style={props.selectedAnswer ? { backgroundColor: answer == props.selectedAnswer.answer ? 'lightblue': 'white' } : {}}
+                        style={props.selectedAnswer ? { backgroundColor: answer == props.selectedAnswer.answer ? 'lightblue': 'white', display: 'list-item' } : { display: 'list-item' }}
                     >
                         {answer}
                     </button>
