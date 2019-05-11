@@ -9,24 +9,24 @@ export default props => {
 
     useEffect(() => {
         if (!category) {
-            setCategory(props.validQuizOptions.category[0]);
+            setCategory('General Knowledge');
         }
         if (!difficulty) {
-            setDifficulty(props.validQuizOptions.difficulty[0]);
+            setDifficulty('any');
         }
         if (!type) {
-            setType(props.validQuizOptions.type[0]);
+            setType('any');
         }
     }, [props.validQuizOptions]);
 
     const onClick = () => props.generateQuiz({ amount, category, difficulty, type});
-    //TODO: sort category alphabetically
+
     return (
         <div id="quiz-generator">
             <div id="options">
                 <input type="number" id="amount" min="1" placeholder="Amount" value={amount} onChange={e => setAmount(e.target.value)} />
                 <select id="category" value={category} onChange={e => setCategory(e.target.value)} >
-                    {props.validQuizOptions.category.map(category =>
+                    {props.validQuizOptions.category.sort().map(category =>
                         <option key={category} value={category}>
                             {category}
                         </option>
