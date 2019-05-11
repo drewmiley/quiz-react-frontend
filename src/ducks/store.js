@@ -10,5 +10,5 @@ export default createStore(reducer, {
     leaderboards: [],
     answers: [],
     validQuizCodes: [],
-    validQuizOptions: {}
+    validQuizOptions: { category: [], difficulty: [], type: [] }
 }, applyMiddleware(thunk));
