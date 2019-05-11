@@ -44,6 +44,7 @@ const generateQuiz = options => async dispatch => {
     const quizResponse = await fetch(`${ endpoint }/api/newquiz`,
         { method: "POST", body: JSON.stringify({ options }), headers: { "Accept": "application/json", "Content-Type": "application/json" }});
     const quiz = await quizResponse.json();
+    //TODO: reload quiz codes
     const generateQuizAction = (quiz, code) => {
         return {
             type: actiontypes.GENERATE_QUIZ,

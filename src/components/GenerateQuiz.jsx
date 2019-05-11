@@ -20,7 +20,7 @@ export default props => {
     }, [props.validQuizOptions]);
 
     const onClick = () => props.generateQuiz({ amount, category, difficulty, type});
-
+    //TODO: sort category alphabetically
     return (
         <div id="quiz-generator">
             <div id="options">
