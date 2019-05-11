@@ -98,7 +98,7 @@ const getLeaderboards = user => async dispatch => {
             }
         }
     }
-    dispatch(getLeaderboardsAction(leaderboards))
+    dispatch(getLeaderboardsAction(leaderboards));
 }
 
 const getValidQuizCodes = user => async dispatch => {
@@ -112,7 +112,7 @@ const getValidQuizCodes = user => async dispatch => {
             }
         }
     }
-    dispatch(getValidQuizCodesAction(validQuizCodes))
+    dispatch(getValidQuizCodesAction(validQuizCodes));
 }
 
 const getValidQuizOptions = user => async dispatch => {
@@ -126,5 +126,5 @@ const getValidQuizOptions = user => async dispatch => {
             }
         }
     }
-    dispatch(getValidQuizOptionsAction(validQuizOptions))
+    dispatch(getValidQuizOptionsAction(validQuizOptions));
 }
