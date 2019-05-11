@@ -1,67 +1,61 @@
 import * as actiontypes from './actiontypes';
 
-const loadQuiz = state => payload => {
-    state.quiz = payload.quiz;
-    state.code = payload.code;
-    state.leaderboard = payload.leaderboard;
+const loadQuiz = state => ({ quiz, code, leaderboard })  => {
+    state.quiz = quiz;
+    state.code = code;
+    state.leaderboard = leaderboard;
     return state;
 }
 
-const generateQuiz = state => payload => {
-    state.quiz = payload.quiz;
-    state.code = payload.code;
+const generateQuiz = state => ({ quiz, code }) => {
+    state.quiz = quiz;
+    state.code = code;
     return state;
 }
 
-const setAnswer = state => payload => {
-    const answers = state.answers.find(d => d.question == payload.question) ?
+const setAnswer = state => ({ question, answer }) => {
+    const answers = state.answers.find(d => d.question == question) ?
         state.answers.map(d => {
-            return d.question == payload.question ? payload : d;
+            return d.question == question ? { question, answer } : d;
         }) :
-        state.answers.concat([payload]);
+        state.answers.concat([{ question, answer }]);
     state.answers = answers;
     return state;
 }
 
-const submitAnswers = state => payload => {
-    state.leaderboard = payload.leaderboard;
+const submitAnswers = state => ({ leaderboard }) => {
+    state.leaderboard = leaderboard;
     return state;
 }
 
-const getLeaderboards = state => payload => {
-    state.leaderboards = payload.leaderboards;
+const getLeaderboards = state => ({ leaderboards }) => {
+    state.leaderboards = leaderboards;
     return state;
 }
 
-const getValidQuizCodes = state => payload => {
-    state.validQuizCodes = payload.validQuizCodes;
+const getValidQuizCodes = state => ({ validQuizCodes }) => {
+    state.validQuizCodes = validQuizCodes;
     return state;
 }
 
-const getValidQuizOptions = state => payload => {
-    state.validQuizOptions = payload.validQuizOptions;
+const getValidQuizOptions = state => ({ validQuizOptions }) => {
+    state.validQuizOptions = validQuizOptions;
     return state;
 }
 
-const newState = () => Object.assign({}, state);
+const actionTypeMap = {
+    [actiontypes.LOAD_QUIZ]: loadQuiz,
+    [actiontypes.GENERATE_QUIZ]: generateQuiz,
+    [actiontypes.SET_ANSWER]: setAnswer,
+    [actiontypes.SUBMIT_ANSWERS]: submitAnswers,
+    [actiontypes.GET_LEADERBOARDS]: getLeaderboards,
+    [actiontypes.GET_VALIDQUIZCODES]: getValidQuizCodes,
+    [actiontypes.GET_VALIDQUIZOPTIONS]: getValidQuizOptions
+}
 
-export default function(state = {}, action) {
-    switch (action.type) {
-        case actiontypes.LOAD_QUIZ:
-            return loadQuiz(newState())(action.payload);
-        case actiontypes.GENERATE_QUIZ:
-            return generateQuiz(newState())(action.payload);
-        case actiontypes.SET_ANSWER:
-            return setAnswer(newState())(action.payload);
-        case actiontypes.SUBMIT_ANSWERS:
-            return submitAnswers(newState())(action.payload);
-        case actiontypes.GET_LEADERBOARDS:
-            return getLeaderboards(newState())(action.payload);
-        case actiontypes.GET_VALIDQUIZCODES:
-            return getValidQuizCodes(newState())(action.payload);
-        case actiontypes.GET_VALIDQUIZOPTIONS:
-            return getValidQuizOptions(newState())(action.payload);
-        default:
-            return newState();
-    }
+export default (state, action) => {
+    const newState = () => Object.assign({}, state);
+    return (actionTypeMap[action.type] || (() => newState))
+        (newState())
+        (action.payload);
 }
