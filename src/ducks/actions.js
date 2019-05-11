@@ -5,7 +5,7 @@ const endpoint = process.env.NODE_ENV == 'production' ?
     'https://quiz-node-backend.herokuapp.com' :
     'http://localhost:8080';
 
-export const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = (dispatch, getState) => ({
     loadQuiz: code => dispatch(loadQuiz(code)),
     generateQuiz: options => dispatch(generateQuiz(options)),
     setAnswer: (question, answer) => dispatch(setAnswer(question, answer)),
@@ -52,7 +52,8 @@ const generateQuiz = options => async dispatch => {
     dispatch(generateQuizAction(decodeQuiz(quiz.quiz), quiz.code));
 };
 
-const setAnswer = (question, answer) => dispatch => {
+const setAnswer = (question, answer) => (dispatch, getState) => {
+    console.log(getState());
     const setAnswerAction = (question, answer) => {
         return {
             type: actiontypes.SET_ANSWER,
