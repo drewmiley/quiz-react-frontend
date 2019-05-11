@@ -10,7 +10,7 @@ import QuizArea from './components/QuizArea';
 import SubmitAnswers from './components/SubmitAnswers';
 
 export default class App extends Component {
-    componentWillMount() {
+    componentDidMount() {
         this.props.getValidQuizCodes();
         this.props.getValidQuizOptions();
     }
