@@ -52,8 +52,7 @@ const generateQuiz = options => async dispatch => {
     dispatch(generateQuizAction(decodeQuiz(quiz.quiz), quiz.code));
 };
 
-const setAnswer = (question, answer) => (dispatch, getState) => {
-    console.log(getState());
+const setAnswer = (question, answer) => dispatch => {
     const setAnswerAction = (question, answer) => {
         return {
             type: actiontypes.SET_ANSWER,
@@ -64,11 +63,12 @@ const setAnswer = (question, answer) => (dispatch, getState) => {
     dispatch(setAnswerAction(question, answer));
 };
 
-const submitAnswers = (code, user, answers) => async dispatch => {
-    const submitAnswersResponse = await fetch(`${ endpoint }/api/answers/${ code }/${ user }`,
-        { method: "POST", body: JSON.stringify({ answers }), headers: { "Accept": "application/json", "Content-Type": "application/json" }});
+const submitAnswers = (user) => async (dispatch, getState) => {
+    const state = getState();
+    const submitAnswersResponse = await fetch(`${ endpoint }/api/answers/${ state.code }/${ user }`,
+        { method: "POST", body: JSON.stringify({ answers: state.answers }), headers: { "Accept": "application/json", "Content-Type": "application/json" }});
     const submitAnswers = await submitAnswersResponse.json();
-    const leaderboardResponse = await fetch(`${ endpoint }/api/leaderboard/${ code }`);
+    const leaderboardResponse = await fetch(`${ endpoint }/api/leaderboard/${ state.code }`);
     const leaderboard = await leaderboardResponse.json();
     const submitAnswersAction = leaderboard => {
         return {

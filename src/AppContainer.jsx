@@ -30,8 +30,6 @@ export default class App extends Component {
             />
             <SubmitAnswers
                 submitAnswers={this.props.submitAnswers}
-                code={this.props.code}
-                answers={this.props.answers}
             />
             <Leaderboard
                 code={this.props.code}

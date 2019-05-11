@@ -5,7 +5,7 @@ export default props => {
 
     const onChange = e => setValue(e.target.value);
 
-    const onClick = () => props.submitAnswers(props.code, value, props.answers);
+    const onClick = () => props.submitAnswers(value);
 
     return (
         <div id="submit-answers">
