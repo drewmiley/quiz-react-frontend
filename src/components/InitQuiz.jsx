@@ -12,6 +12,7 @@ export default props => {
             />
             <GenerateQuiz
                 generateQuiz={props.generateQuiz}
+                validQuizOptions={props.validQuizOptions}
             />
         </div>
     );
