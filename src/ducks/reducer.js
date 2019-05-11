@@ -53,9 +53,4 @@ const actionTypeMap = {
     [actiontypes.GET_VALIDQUIZOPTIONS]: getValidQuizOptions
 }
 
-export default (state, action) => {
-    const newState = () => Object.assign({}, state);
-    return (actionTypeMap[action.type] || (() => newState))
-        (newState())
-        (action.payload);
-}
+export default (state, action) => (actionTypeMap[action.type] || (d => () => d))(Object.assign({}, state))(action.payload);
