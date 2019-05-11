@@ -45,9 +45,8 @@ const getValidQuizCodes = (state, validQuizCodes) => {
 }
 
 const getValidQuizOptions = (state, validQuizOptions) => {
-    let newState = Object.assign({}, state);
-    newState.validQuizOptions = validQuizOptions;
-    return newState;
+    state.validQuizOptions = validQuizOptions;
+    return state;
 }
 
 export default function(state = {}, action) {
@@ -63,10 +62,11 @@ export default function(state = {}, action) {
         case actiontypes.GET_LEADERBOARDS:
             return getLeaderboards(state, action.leaderboards);
         case actiontypes.GET_VALIDQUIZCODES:
-            return getValidQuizCodes(state, action.validQuizCodes);
+            return getValidQuizCodes(Object.assign({}, state), action.validQuizCodes);
         case actiontypes.GET_VALIDQUIZOPTIONS:
             return getValidQuizOptions(state, action.validQuizOptions);
         default:
-            return state;
+            const functor = d => d;
+            return functor(state);
     }
 }
