@@ -44,23 +44,23 @@ const getValidQuizOptions = (state, validQuizOptions) => {
 }
 
 export default function(state = {}, action) {
+    const newState = () => Object.assign({}, state);
     switch (action.type) {
         case actiontypes.LOAD_QUIZ:
-            return loadQuiz(Object.assign({}, state), action.payload.quiz, action.payload.code, action.payload.leaderboard);
+            return loadQuiz(newState(), action.payload.quiz, action.payload.code, action.payload.leaderboard);
         case actiontypes.GENERATE_QUIZ:
-            return generateQuiz(Object.assign({}, state), action.payload.quiz, action.payload.code);
+            return generateQuiz(newState(), action.payload.quiz, action.payload.code);
         case actiontypes.SET_ANSWER:
-            return setAnswer(Object.assign({}, state), action.payload.question, action.payload.answer);
+            return setAnswer(newState(), action.payload.question, action.payload.answer);
         case actiontypes.SUBMIT_ANSWERS:
-            return submitAnswers(Object.assign({}, state), action.payload.leaderboard);
+            return submitAnswers(newState(), action.payload.leaderboard);
         case actiontypes.GET_LEADERBOARDS:
-            return getLeaderboards(Object.assign({}, state), action.payload.leaderboards);
+            return getLeaderboards(newState(), action.payload.leaderboards);
         case actiontypes.GET_VALIDQUIZCODES:
-            return getValidQuizCodes(Object.assign({}, state), action.payload.validQuizCodes);
+            return getValidQuizCodes(newState(), action.payload.validQuizCodes);
         case actiontypes.GET_VALIDQUIZOPTIONS:
-            return getValidQuizOptions(Object.assign({}, state), action.payload.validQuizOptions);
+            return getValidQuizOptions(newState(), action.payload.validQuizOptions);
         default:
-            const functor = d => d;
-            return functor(state);
+            return newState();
     }
 }
