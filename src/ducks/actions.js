@@ -44,16 +44,19 @@ const generateQuiz = options => async dispatch => {
     const quizResponse = await fetch(`${ endpoint }/api/newquiz`,
         { method: "POST", body: JSON.stringify({ options }), headers: { "Accept": "application/json", "Content-Type": "application/json" }});
     const quiz = await quizResponse.json();
+    const validQuizCodesResponse = await fetch(`${ endpoint }/api/quizcodes`);
+    const validQuizCodes = await validQuizCodesResponse.json();
     const generateQuizAction = (quiz, code) => {
         return {
             type: actiontypes.GENERATE_QUIZ,
             payload: {
                 quiz,
-                code
+                code,
+                validQuizCodes
             }
         }
     }
-    dispatch(generateQuizAction(decodeQuiz(quiz.quiz), quiz.code));
+    dispatch(generateQuizAction(decodeQuiz(quiz.quiz), quiz.code, validQuizCodes));
 };
 
 const setAnswer = (question, answer) => dispatch => {
