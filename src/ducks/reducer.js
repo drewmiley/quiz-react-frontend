@@ -1,72 +1,56 @@
 import * as actiontypes from './actiontypes';
 
-const loadQuiz = (state, quiz, code, leaderboard) => {
-    let newState = Object.assign({}, state);
-    newState.quiz = quiz;
-    newState.code = code;
-    newState.leaderboard = leaderboard;
-    return newState;
+const loadQuiz = state => ({ quiz, code, leaderboard })  => {
+    state.quiz = quiz;
+    state.code = code;
+    state.leaderboard = leaderboard;
+    return state;
 }
 
-const generateQuiz = (state, quiz, code) => {
-    let newState = Object.assign({}, state);
-    newState.quiz = quiz;
-    newState.code = code;
-    return newState;
+const generateQuiz = state => ({ quiz, code }) => {
+    state.quiz = quiz;
+    state.code = code;
+    return state;
 }
 
-const setAnswer = (state, question, answer) => {
-    let newState = Object.assign({}, state);
-    const answers = newState.answers.find(d => d.question == question) ?
-        newState.answers.map(d => {
+const setAnswer = state => ({ question, answer }) => {
+    const answers = state.answers.find(d => d.question == question) ?
+        state.answers.map(d => {
             return d.question == question ? { question, answer } : d;
         }) :
-        newState.answers.concat([{ question, answer }]);
-    newState.answers = answers;
-    return newState;
+        state.answers.concat([{ question, answer }]);
+    state.answers = answers;
+    return state;
 }
 
-const submitAnswers = (state, leaderboard) => {
-    let newState = Object.assign({}, state);
-    newState.leaderboard = leaderboard;
-    return newState;
+const submitAnswers = state => ({ leaderboard }) => {
+    state.leaderboard = leaderboard;
+    return state;
 }
 
-const getLeaderboards = (state, leaderboards) => {
-    let newState = Object.assign({}, state);
-    newState.leaderboards = leaderboards;
-    return newState;
+const getLeaderboards = state => ({ leaderboards }) => {
+    state.leaderboards = leaderboards;
+    return state;
 }
 
-const getValidQuizCodes = (state, validQuizCodes) => {
-    let newState = Object.assign({}, state);
-    newState.validQuizCodes = validQuizCodes;
-    return newState;
+const getValidQuizCodes = state => ({ validQuizCodes }) => {
+    state.validQuizCodes = validQuizCodes;
+    return state;
 }
 
-const getValidQuizOptions = (state, validQuizOptions) => {
+const getValidQuizOptions = state => ({ validQuizOptions }) => {
     state.validQuizOptions = validQuizOptions;
     return state;
 }
 
-export default function(state = {}, action) {
-    switch (action.type) {
-        case actiontypes.LOAD_QUIZ:
-            return loadQuiz(state, action.quiz, action.code, action.leaderboard);
-        case actiontypes.GENERATE_QUIZ:
-            return generateQuiz(state, action.quiz, action.code);
-        case actiontypes.SET_ANSWER:
-            return setAnswer(state, action.question, action.answer);
-        case actiontypes.SUBMIT_ANSWERS:
-            return submitAnswers(state, action.leaderboard);
-        case actiontypes.GET_LEADERBOARDS:
-            return getLeaderboards(state, action.leaderboards);
-        case actiontypes.GET_VALIDQUIZCODES:
-            return getValidQuizCodes(Object.assign({}, state), action.validQuizCodes);
-        case actiontypes.GET_VALIDQUIZOPTIONS:
-            return getValidQuizOptions(state, action.validQuizOptions);
-        default:
-            const functor = d => d;
-            return functor(state);
-    }
+const actionTypeMap = {
+    [actiontypes.LOAD_QUIZ]: loadQuiz,
+    [actiontypes.GENERATE_QUIZ]: generateQuiz,
+    [actiontypes.SET_ANSWER]: setAnswer,
+    [actiontypes.SUBMIT_ANSWERS]: submitAnswers,
+    [actiontypes.GET_LEADERBOARDS]: getLeaderboards,
+    [actiontypes.GET_VALIDQUIZCODES]: getValidQuizCodes,
+    [actiontypes.GET_VALIDQUIZOPTIONS]: getValidQuizOptions
 }
+
+export default (state, action) => (actionTypeMap[action.type] || (d => () => d))(Object.assign({}, state))(action.payload);
