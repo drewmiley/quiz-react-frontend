@@ -43,8 +43,9 @@ const getValidQuizOptions = state => payload => {
     return state;
 }
 
+const newState = () => Object.assign({}, state);
+
 export default function(state = {}, action) {
-    const newState = () => Object.assign({}, state);
     switch (action.type) {
         case actiontypes.LOAD_QUIZ:
             return loadQuiz(newState())(action.payload);
