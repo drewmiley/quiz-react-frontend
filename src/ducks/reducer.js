@@ -7,9 +7,10 @@ const loadQuiz = state => ({ quiz, code, leaderboard })  => {
     return state;
 }
 
-const generateQuiz = state => ({ quiz, code }) => {
+const generateQuiz = state => ({ quiz, code, validQuizCodes }) => {
     state.quiz = quiz;
     state.code = code;
+    state.validQuizCodes = validQuizCodes;
     return state;
 }
 
