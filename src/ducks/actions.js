@@ -30,9 +30,11 @@ const loadQuiz = code => async dispatch => {
     const loadQuizAction = (quiz, code, leaderboard) => {
         return {
             type: actiontypes.LOAD_QUIZ,
-            quiz,
-            code,
-            leaderboard
+            payload: {
+                quiz,
+                code,
+                leaderboard
+            }
         }
     }
     dispatch(loadQuizAction(decodeQuiz(quiz.quiz), code, leaderboard.results));
@@ -45,8 +47,10 @@ const generateQuiz = options => async dispatch => {
     const generateQuizAction = (quiz, code) => {
         return {
             type: actiontypes.GENERATE_QUIZ,
-            quiz,
-            code
+            payload: {
+                quiz,
+                code
+            }
         }
     }
     dispatch(generateQuizAction(decodeQuiz(quiz.quiz), quiz.code));
@@ -56,8 +60,10 @@ const setAnswer = (question, answer) => dispatch => {
     const setAnswerAction = (question, answer) => {
         return {
             type: actiontypes.SET_ANSWER,
-            question,
-            answer
+            payload: {
+                question,
+                answer
+            }
         }
     }
     dispatch(setAnswerAction(question, answer));
@@ -73,7 +79,9 @@ const submitAnswers = (user) => async (dispatch, getState) => {
     const submitAnswersAction = leaderboard => {
         return {
             type: actiontypes.SUBMIT_ANSWERS,
-            leaderboard
+            payload: {
+                leaderboard
+            }
         }
     }
     dispatch(submitAnswersAction(leaderboard.results));
@@ -85,7 +93,9 @@ const getLeaderboards = user => async dispatch => {
     const getLeaderboardsAction = leaderboards => {
         return {
             type: actiontypes.GET_LEADERBOARDS,
-            leaderboards
+            payload: {
+                leaderboards
+            }
         }
     }
     dispatch(getLeaderboardsAction(leaderboards))
@@ -97,7 +107,9 @@ const getValidQuizCodes = user => async dispatch => {
     const getValidQuizCodesAction = validQuizCodes => {
         return {
             type: actiontypes.GET_VALIDQUIZCODES,
-            validQuizCodes
+            payload: {
+                validQuizCodes
+            }
         }
     }
     dispatch(getValidQuizCodesAction(validQuizCodes))
@@ -109,7 +121,9 @@ const getValidQuizOptions = user => async dispatch => {
     const getValidQuizOptionsAction = validQuizOptions => {
         return {
             type: actiontypes.GET_VALIDQUIZOPTIONS,
-            validQuizOptions
+            payload: {
+                validQuizOptions
+            }
         }
     }
     dispatch(getValidQuizOptionsAction(validQuizOptions))

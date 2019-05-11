@@ -52,19 +52,19 @@ const getValidQuizOptions = (state, validQuizOptions) => {
 export default function(state = {}, action) {
     switch (action.type) {
         case actiontypes.LOAD_QUIZ:
-            return loadQuiz(state, action.quiz, action.code, action.leaderboard);
+            return loadQuiz(state, action.payload.quiz, action.payload.code, action.payload.leaderboard);
         case actiontypes.GENERATE_QUIZ:
-            return generateQuiz(state, action.quiz, action.code);
+            return generateQuiz(state, action.payload.quiz, action.payload.code);
         case actiontypes.SET_ANSWER:
-            return setAnswer(state, action.question, action.answer);
+            return setAnswer(state, action.payload.question, action.payload.answer);
         case actiontypes.SUBMIT_ANSWERS:
-            return submitAnswers(state, action.leaderboard);
+            return submitAnswers(state, action.payload.leaderboard);
         case actiontypes.GET_LEADERBOARDS:
-            return getLeaderboards(state, action.leaderboards);
+            return getLeaderboards(state, action.payload.leaderboards);
         case actiontypes.GET_VALIDQUIZCODES:
-            return getValidQuizCodes(Object.assign({}, state), action.validQuizCodes);
+            return getValidQuizCodes(Object.assign({}, state), action.payload.validQuizCodes);
         case actiontypes.GET_VALIDQUIZOPTIONS:
-            return getValidQuizOptions(state, action.validQuizOptions);
+            return getValidQuizOptions(state, action.payload.validQuizOptions);
         default:
             const functor = d => d;
             return functor(state);
