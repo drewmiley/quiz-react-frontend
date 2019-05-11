@@ -11,7 +11,8 @@ export const mapDispatchToProps = dispatch => ({
     setAnswer: (question, answer) => dispatch(setAnswer(question, answer)),
     submitAnswers: (code, user, answers) => dispatch(submitAnswers(code, user, answers)),
     getLeaderboards: user => dispatch(getLeaderboards(user)),
-    getValidQuizCodes: () => dispatch(getValidQuizCodes())
+    getValidQuizCodes: () => dispatch(getValidQuizCodes()),
+    getValidQuizOptions: () => dispatch(getValidQuizOptions())
 });
 
 const decodeQuiz = quiz => quiz
@@ -99,4 +100,16 @@ const getValidQuizCodes = user => async dispatch => {
         }
     }
     dispatch(getValidQuizCodesAction(validQuizCodes))
+}
+
+const getValidQuizOptions = user => async dispatch => {
+    const validQuizOptionsResponse = await fetch(`${ endpoint }/api/quizoptions`);
+    const validQuizOptions = await validQuizOptionsResponse.json();
+    const getValidQuizOptionsAction = validQuizOptions => {
+        return {
+            type: actiontypes.GET_VALIDQUIZOPTIONS,
+            validQuizOptions
+        }
+    }
+    dispatch(getValidQuizOptionsAction(validQuizOptions))
 }

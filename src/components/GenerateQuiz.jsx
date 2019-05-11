@@ -4,6 +4,7 @@ export default class GenerateQuiz extends Component {
     constructor(props) {
         super(props);
         this.shouldComponentUpdate = (nextProps, nextState) => {
+            console.log(nextProps.validQuizOptions);
             return false;
         };
     }

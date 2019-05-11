@@ -12,6 +12,7 @@ import SubmitAnswers from './components/SubmitAnswers';
 export default class App extends Component {
     componentWillMount() {
         this.props.getValidQuizCodes();
+        this.props.getValidQuizOptions();
     }
     render() {
         return <>
@@ -19,6 +20,7 @@ export default class App extends Component {
                 loadQuiz={this.props.loadQuiz}
                 generateQuiz={this.props.generateQuiz}
                 validQuizCodes={this.props.validQuizCodes}
+                validQuizOptions={this.props.validQuizOptions}
             />
             <QuizArea
                 setAnswer={this.props.setAnswer}
