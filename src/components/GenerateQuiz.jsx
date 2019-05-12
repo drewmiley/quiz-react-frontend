@@ -47,7 +47,7 @@ export default props => {
                     )}
                 </select>
             </div>
-            <button id="generate" onClick={onClick}>Generate</button>
+            <button id="generate" onClick={onClick} disabled={!amount}>Generate</button>
         </div>
     );
 }
