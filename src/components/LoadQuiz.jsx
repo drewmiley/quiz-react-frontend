@@ -17,7 +17,7 @@ export default props => {
                 onChange={e => setValue(e.target.value)}
                 onSelect={val => setValue(val)}
             />
-            <button id="load" onClick={onClick}>Load</button>
+        <button id="load" onClick={onClick} disabled={!value}>Load</button>
         </div>
     );
 }
