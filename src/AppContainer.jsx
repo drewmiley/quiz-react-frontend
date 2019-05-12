@@ -4,9 +4,9 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import { mapDispatchToProps } from './ducks/actions';
 
-import Home from './routes/Home';
-import About from './routes/About';
-import Users from './routes/Users';
+import Init from './routes/Init';
+import Leaderboards from './routes/Leaderboards';
+import Quiz from './routes/Quiz';
 
 class App extends Component {
     componentDidMount() {
@@ -18,9 +18,9 @@ class App extends Component {
             <>
                 <nav>
                     <ul>
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to="/about/">About</Link></li>
-                        <li><Link to="/users/">Users</Link></li>
+                        <li><Link to="/">Init</Link></li>
+                        <li><Link to="/quiz/">Quiz</Link></li>
+                        <li><Link to="/leaderboards/">Leaderboards</Link></li>
                     </ul>
                 </nav>
 
@@ -28,11 +28,23 @@ class App extends Component {
                     path="/"
                     exact
                     render={(routeProps) => (
-                        <Home {...this.props} />
+                        <Init {...this.props} />
                     )}
                 />
-                <Route path="/about/" component={About} />
-                <Route path="/users/" component={Users} />
+                <Route
+                    path="/quiz/"
+                    exact
+                    render={(routeProps) => (
+                        <Quiz {...this.props} />
+                    )}
+                />
+                <Route
+                    path="/leaderboards/"
+                    exact
+                    render={(routeProps) => (
+                        <Leaderboards {...this.props} />
+                    )}
+                />
             </>
         </Router>
     }

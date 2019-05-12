@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import InitQuiz from '../components/InitQuiz';
 import Leaderboard from '../components/Leaderboard';
