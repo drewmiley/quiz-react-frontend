@@ -1,46 +1,53 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import { mapDispatchToProps } from './ducks/actions';
 
-import InitQuiz from './components/InitQuiz';
-import Leaderboard from './components/Leaderboard';
-import Leaderboards from './components/Leaderboards';
-import QuizArea from './components/QuizArea';
-import SubmitAnswers from './components/SubmitAnswers';
+import Init from './routes/Init';
+import Leaderboards from './routes/Leaderboards';
+import Quiz from './routes/Quiz';
 
-export default class App extends Component {
+class App extends Component {
     componentDidMount() {
         this.props.getValidQuizCodes();
         this.props.getValidQuizOptions();
     }
     render() {
-        return <>
-            <InitQuiz
-                loadQuiz={this.props.loadQuiz}
-                generateQuiz={this.props.generateQuiz}
-                validQuizCodes={this.props.validQuizCodes}
-                validQuizOptions={this.props.validQuizOptions}
-            />
-            <QuizArea
-                setAnswer={this.props.setAnswer}
-                code={this.props.code}
-                quiz={this.props.quiz}
-                answers={this.props.answers}
-            />
-            <SubmitAnswers
-                submitAnswers={this.props.submitAnswers}
-            />
-            <Leaderboard
-                code={this.props.code}
-                leaderboard={this.props.leaderboard}
-            />
-            <Leaderboards
-                getLeaderboards={this.props.getLeaderboards}
-                leaderboards={this.props.leaderboards}
-            />
-        </>
+        return <Router>
+            <>
+                <nav>
+                    <ul>
+                        <li><Link to="/">Init</Link></li>
+                        <li><Link to="/quiz/">Quiz</Link></li>
+                        <li><Link to="/leaderboards/">Leaderboards</Link></li>
+                    </ul>
+                </nav>
+
+                <Route
+                    path="/"
+                    exact
+                    render={(routeProps) => (
+                        <Init {...this.props} />
+                    )}
+                />
+                <Route
+                    path="/quiz/"
+                    exact
+                    render={(routeProps) => (
+                        <Quiz {...this.props} />
+                    )}
+                />
+                <Route
+                    path="/leaderboards/"
+                    exact
+                    render={(routeProps) => (
+                        <Leaderboards {...this.props} />
+                    )}
+                />
+            </>
+        </Router>
     }
-};
+}
 
 export const AppContainer = connect(state => state, mapDispatchToProps)(App);
