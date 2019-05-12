@@ -14,35 +14,27 @@ class App extends Component {
         this.props.getValidQuizOptions();
     }
     render() {
-        return (
-            <Router>
-                <>
-                    <nav>
-                        <ul>
-                            <li>
-                                <Link to="/">Home</Link>
-                            </li>
-                            <li>
-                                <Link to="/about/">About</Link>
-                            </li>
-                            <li>
-                                <Link to="/users/">Users</Link>
-                            </li>
-                        </ul>
-                    </nav>
+        return <Router>
+            <>
+                <nav>
+                    <ul>
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/about/">About</Link></li>
+                        <li><Link to="/users/">Users</Link></li>
+                    </ul>
+                </nav>
 
-                    <Route
-                        path="/"
-                        exact
-                        render={(routeProps) => (
-                            <Home {...this.props} />
-                        )}
-                    />
-                    <Route path="/about/" component={About} />
-                    <Route path="/users/" component={Users} />
-                </>
-            </Router>
-        )
+                <Route
+                    path="/"
+                    exact
+                    render={(routeProps) => (
+                        <Home {...this.props} />
+                    )}
+                />
+                <Route path="/about/" component={About} />
+                <Route path="/users/" component={Users} />
+            </>
+        </Router>
     }
 }
 
