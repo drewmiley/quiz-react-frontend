@@ -1,9 +1,14 @@
 import { createStore, applyMiddleware } from 'redux';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import thunk from 'redux-thunk';
 
 import reducer from './reducer';
 
-export default createStore(reducer, {
+const persistConfig = { key: 'root', storage };
+const persistedReducer = persistReducer(persistConfig, reducer);
+
+const initialState = {
     code: '',
     quiz: [],
     leaderboard: [],
@@ -11,4 +16,10 @@ export default createStore(reducer, {
     answers: [],
     validQuizCodes: [],
     validQuizOptions: { category: [], difficulty: [], type: [] }
-}, applyMiddleware(thunk));
+}
+
+export default () => {
+    const store = createStore(persistedReducer, initialState, applyMiddleware(thunk));
+    const persistor = persistStore(store);
+    return { store, persistor };
+}
