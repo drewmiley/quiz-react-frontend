@@ -5,7 +5,8 @@ import QuizArea from '../components/QuizArea';
 import SubmitAnswers from '../components/SubmitAnswers';
 
 export default props => {
-    const canSubmit = props.quiz.length && props.quiz.length == props.answers.length;
+    const questionsAnswers = props.answers.map(d => d.question);
+    const canSubmit = props.quiz.length && !props.quiz.find(d => !questionsAnswers.includes(d.question));
     return <>
         <QuizArea
             setAnswer={props.setAnswer}
