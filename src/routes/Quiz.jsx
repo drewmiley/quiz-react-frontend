@@ -5,6 +5,7 @@ import QuizArea from '../components/QuizArea';
 import SubmitAnswers from '../components/SubmitAnswers';
 
 export default props => {
+    const canSubmit = props.quiz.length && props.quiz.length == props.answers.length;
     return <>
         <QuizArea
             setAnswer={props.setAnswer}
@@ -13,7 +14,7 @@ export default props => {
             answers={props.answers}
         />
         <SubmitAnswers
-            canSubmit={props.quiz.length && props.quiz.length == props.answers.length}
+            canSubmit={canSubmit}
             submitAnswers={props.submitAnswers}
         />
         <Leaderboard
