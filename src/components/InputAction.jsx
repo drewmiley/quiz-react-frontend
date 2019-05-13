@@ -10,7 +10,7 @@ export default props => {
     return (
         <div id={props.id}>
             <input type="text" value={value} onChange={onChange} />
-            <button onClick={onClick}>{props.buttonText}</button>
+            <button onClick={onClick} disabled={props.disabled(value)}>{props.buttonText}</button>
         </div>
     );
 }
