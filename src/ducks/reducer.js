@@ -1,6 +1,7 @@
 import * as actiontypes from './actiontypes';
 
 const loadQuiz = state => ({ quiz, code, leaderboard })  => {
+    state.answers = []
     state.quiz = quiz;
     state.code = code;
     state.leaderboard = leaderboard;
@@ -8,6 +9,7 @@ const loadQuiz = state => ({ quiz, code, leaderboard })  => {
 }
 
 const generateQuiz = state => ({ quiz, code, validQuizCodes }) => {
+    state.answers = [];
     state.quiz = quiz;
     state.code = code;
     state.validQuizCodes = validQuizCodes;
