@@ -10,6 +10,7 @@ export default props => {
             <InputAction
                 id="leaderboards-by-user"
                 buttonText="Get Leaderboards"
+                disabled={() => false}
                 action={props.getLeaderboards}
             />
             {props.leaderboards.map((leaderboard, i) =>

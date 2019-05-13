@@ -7,6 +7,7 @@ export default props => {
         <InputAction
             id="submit-answers"
             buttonText="Submit Answers"
+            disabled={value => !props.canSubmit || !value}
             action={props.submitAnswers}
         />
     );

@@ -13,6 +13,7 @@ export default props => {
             answers={props.answers}
         />
         <SubmitAnswers
+            canSubmit={props.quiz.length && props.quiz.length == props.answers.length}
             submitAnswers={props.submitAnswers}
         />
         <Leaderboard
