@@ -1,35 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-const Select = props => {
-    const [value, setValue] = useState(props.default);
-    return (
-        <select value={value} onChange={e => setValue(e.target.value)} >
-            {props.values.sort().map(d =>
-                <option key={d} value={d}>
-                    {d}
-                </option>
-            )}
-        </select>
-    )
-}
+import Select from './Select';
 
 export default props => {
     const [amount, setAmount] = useState('');
-    const [category, setCategory] = useState('');
-    const [difficulty, setDifficulty] = useState('');
-    const [type, setType] = useState('');
-
-    useEffect(() => {
-        if (!category) {
-            setCategory('General Knowledge');
-        }
-        if (!difficulty) {
-            setDifficulty('any');
-        }
-        if (!type) {
-            setType('any');
-        }
-    }, [props.validQuizOptions]);
+    const [category, setCategory] = useState('General Knowledge');
+    const [difficulty, setDifficulty] = useState('any');
+    const [type, setType] = useState('any');
 
     const onClick = () => props.generateQuiz({ amount, category, difficulty, type});
 
@@ -38,38 +15,20 @@ export default props => {
             <div id="options">
                 <input type="number" id="amount" min="1" placeholder="Amount" value={amount} onChange={e => setAmount(e.target.value)} />
                 <Select
-                    default='General Knowledge'
+                    value={category}
                     values={props.validQuizOptions.category.sort()}
+                    onChange={setCategory}
                 />
-                <select id="category" value={category} onChange={e => setCategory(e.target.value)} >
-                    {props.validQuizOptions.category.sort().map(category =>
-                        <option key={category} value={category}>
-                            {category}
-                        </option>
-                    )}
-                </select>
                 <Select
-                    default='any'
+                    value={difficulty}
                     values={props.validQuizOptions.difficulty}
+                    onChange={setDifficulty}
                 />
-                <select id="difficulty" value={difficulty} onChange={e => setDifficulty(e.target.value)} >
-                    {props.validQuizOptions.difficulty.map(difficulty =>
-                        <option key={difficulty} value={difficulty}>
-                            {difficulty}
-                        </option>
-                    )}
-                </select>
                 <Select
-                    default='any'
+                    value={type}
                     values={props.validQuizOptions.type}
+                    onChange={setType}
                 />
-                <select id="type" value={type} onChange={e => setType(e.target.value)} >
-                    {props.validQuizOptions.type.map(type =>
-                        <option key={type} value={type}>
-                            {type}
-                        </option>
-                    )}
-                </select>
             </div>
             <button id="generate" onClick={onClick} disabled={!amount}>Generate</button>
         </div>
