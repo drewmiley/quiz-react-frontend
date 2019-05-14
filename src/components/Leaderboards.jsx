@@ -6,7 +6,7 @@ import Leaderboard from './Leaderboard';
 export default props => {
     return (
         <div id="leaderboards">
-            <h2>{props.code} LEADERBOARDS</h2>
+            <h2>LEADERBOARDS</h2>
             <InputAction
                 id="leaderboards-by-user"
                 buttonText="Get Leaderboards"
