@@ -13,13 +13,16 @@ export default props => {
                 disabled={() => false}
                 action={props.getLeaderboards}
             />
-            {props.leaderboards.map((leaderboard, i) =>
-                <Leaderboard
-                    key={i}
-                    code={leaderboard.code}
-                    leaderboard={leaderboard.results}
-                />
-            )}
+            {props.leaderboards
+                .filter(leaderboard => leaderboard.results.length)
+                .map((leaderboard, i) =>
+                    <Leaderboard
+                        key={i}
+                        code={leaderboard.code}
+                        leaderboard={leaderboard.results}
+                    />
+                )
+            }
         </div>
     );
 }

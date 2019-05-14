@@ -8,6 +8,7 @@ export default props => {
 
     return (
         <div id="quiz-loader">
+            <h4>LOAD QUIZ</h4>
             <AutoComplete
                 getItemValue={item => item}
                 items={props.validQuizCodes}

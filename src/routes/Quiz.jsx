@@ -14,13 +14,18 @@ export default props => {
             quiz={props.quiz}
             answers={props.answers}
         />
-        <SubmitAnswers
-            canSubmit={canSubmit}
-            submitAnswers={props.submitAnswers}
-        />
-        <Leaderboard
-            code={props.code}
-            leaderboard={props.leaderboard}
-        />
+        <br/>
+        {props.answers.length > 0 &&
+            <SubmitAnswers
+                canSubmit={canSubmit}
+                submitAnswers={props.submitAnswers}
+            />
+        }
+        {props.leaderboard.length > 0 &&
+            <Leaderboard
+                code={props.code}
+                leaderboard={props.leaderboard}
+            />
+        }
     </>
 };
