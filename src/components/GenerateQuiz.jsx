@@ -12,6 +12,7 @@ export default props => {
 
     return (
         <div id="quiz-generator">
+            <h4>GENERATE QUIZ</h4>
             <div id="options">
                 <input type="number" id="amount" min="1" placeholder="Amount" value={amount} onChange={e => setAmount(e.target.value)} />
                 <Select

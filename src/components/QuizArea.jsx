@@ -15,7 +15,9 @@ export default props => {
 
     return (
         <div id="quiz-area">
-            <h4 id="quiz-code">Code: {props.code}</h4>
+            {props.code.length > 0 &&
+                <h4 id="quiz-code">Code: {props.code}</h4>
+            }
             {questions.map((d, i) =>
                 <Question
                     key={i}
