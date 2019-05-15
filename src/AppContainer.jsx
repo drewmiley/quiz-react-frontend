@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Router, Route, Link } from "react-router-dom";
 
 import './app.css';
+
+import history from './history';
 
 import { mapDispatchToProps } from './ducks/actions';
 
@@ -16,7 +18,7 @@ class App extends Component {
         this.props.getValidQuizOptions();
     }
     render() {
-        return <Router>
+        return <Router history={history}>
             <>
                 <nav>
                     <ul>

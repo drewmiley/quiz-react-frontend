@@ -1,6 +1,8 @@
 import { decode } from 'he';
 import * as actiontypes from './actiontypes';
 
+import history from '../history';
+
 const endpoint = process.env.NODE_ENV == 'production' ?
     'https://quiz-node-backend.herokuapp.com' :
     'http://localhost:8080';
@@ -38,6 +40,7 @@ const loadQuiz = code => async dispatch => {
         }
     }
     dispatch(loadQuizAction(decodeQuiz(quiz.quiz), code, leaderboard.results));
+    history.push('/quiz/');
 };
 
 const generateQuiz = options => async dispatch => {
@@ -57,6 +60,7 @@ const generateQuiz = options => async dispatch => {
         }
     }
     dispatch(generateQuizAction(decodeQuiz(quiz.quiz), quiz.code, validQuizCodes));
+    history.push('/quiz/');
 };
 
 const setAnswer = (question, answer) => dispatch => {
