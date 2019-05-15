@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
+import './app.css';
+
 import { mapDispatchToProps } from './ducks/actions';
 
 import Init from './routes/Init';
