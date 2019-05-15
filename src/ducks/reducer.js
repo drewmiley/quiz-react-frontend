@@ -27,6 +27,7 @@ const setAnswer = state => ({ question, answer }) => {
 }
 
 const submitAnswers = state => ({ leaderboard }) => {
+    state.answers = [];
     state.leaderboard = leaderboard;
     return state;
 }
