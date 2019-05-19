@@ -39,7 +39,7 @@ const loadQuiz = code => async dispatch => {
             }
         }
     }
-    dispatch(loadQuizAction(quiz.quiz, code, leaderboard.results));
+    dispatch(loadQuizAction(decodeQuiz(quiz.quiz), code, leaderboard.results));
     history.push('/quiz/');
 };
 
@@ -59,7 +59,7 @@ const generateQuiz = options => async dispatch => {
             }
         }
     }
-    dispatch(generateQuizAction(quiz.quiz, quiz.code, validQuizCodes));
+    dispatch(generateQuizAction(decodeQuiz(quiz.quiz), quiz.code, validQuizCodes));
     history.push('/quiz/');
 };
 
