@@ -59,7 +59,7 @@ const generateQuiz = options => async dispatch => {
             }
         }
     }
-    dispatch(generateQuizAction(decodeQuiz(quiz.quiz), quiz.code, validQuizCodes));
+    dispatch(generateQuizAction(quiz.quiz, quiz.code, validQuizCodes));
     history.push('/quiz/');
 };
 
