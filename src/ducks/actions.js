@@ -39,7 +39,7 @@ const loadQuiz = code => async dispatch => {
             }
         }
     }
-    dispatch(loadQuizAction(decodeQuiz(quiz.quiz), code, leaderboard.results));
+    dispatch(loadQuizAction(quiz.quiz, code, leaderboard.results));
     history.push('/quiz/');
 };
 
