@@ -1,4 +1,3 @@
-import { decode } from 'he';
 import * as actiontypes from './actiontypes';
 
 import history from '../history';
@@ -17,13 +16,6 @@ export const mapDispatchToProps = (dispatch, getState) => ({
     getValidQuizOptions: () => dispatch(getValidQuizOptions())
 });
 
-const decodeQuiz = quiz => quiz
-    .map(d => ({
-        question: decode(d.question),
-        answer: decode(d.answer),
-        incorrectAnswers: d.incorrectAnswers.map(ia => decode(ia))
-    }))
-
 const loadQuiz = code => async dispatch => {
     const quizResponse = await fetch(`${ endpoint }/api/quiz/${ code }`);
     const quiz = await quizResponse.json();
@@ -39,7 +31,7 @@ const loadQuiz = code => async dispatch => {
             }
         }
     }
-    dispatch(loadQuizAction(decodeQuiz(quiz.quiz), code, leaderboard.results));
+    dispatch(loadQuizAction(quiz.quiz, code, leaderboard.results));
     history.push('/quiz/');
 };
 
@@ -59,7 +51,7 @@ const generateQuiz = options => async dispatch => {
             }
         }
     }
-    dispatch(generateQuizAction(decodeQuiz(quiz.quiz), quiz.code, validQuizCodes));
+    dispatch(generateQuizAction(quiz.quiz, quiz.code, validQuizCodes));
     history.push('/quiz/');
 };
 
