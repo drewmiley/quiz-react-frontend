@@ -1,4 +1,5 @@
 import * as actiontypes from './actiontypes';
+import { reducer } from './redux-anon';
 
 const loadQuiz = state => ({ quiz, code, leaderboard })  => {
     state.answers = []
@@ -57,4 +58,4 @@ const actionTypeMap = {
     [actiontypes.GET_VALIDQUIZOPTIONS]: getValidQuizOptions
 }
 
-export default (state, action) => (actionTypeMap[action.type] || (d => () => d))(Object.assign({}, state))(action.payload);
+export default reducer(actionTypeMap);
