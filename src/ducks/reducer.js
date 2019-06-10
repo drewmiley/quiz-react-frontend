@@ -1,5 +1,5 @@
 import * as actiontypes from './actiontypes';
-import { reducer } from './redux-anon';
+import reducer from '../../redux-anon-reducer';
 
 const loadQuiz = state => ({ quiz, code, leaderboard })  => {
     state.answers = []
