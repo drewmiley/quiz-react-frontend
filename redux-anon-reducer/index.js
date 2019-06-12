@@ -1,2 +1,5 @@
-export default actionMap => (state, action) =>
-        (actionMap[action.type] || (d => () => d))(Object.assign({}, state))(action.payload);
+export default (actionMap, defaultReturn) =>
+    (state, action) =>
+        (actionMap[action.type] || ( d => () => (defaultReturn || d)))
+            (Object.assign({}, state))
+                (action.payload);

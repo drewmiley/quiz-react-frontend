@@ -1,5 +1,5 @@
 export const loadQuiz = state => ({ quiz, code, leaderboard })  => {
-    state.answers = []
+    state.answers = [];
     state.quiz = quiz;
     state.code = code;
     state.leaderboard = leaderboard;
