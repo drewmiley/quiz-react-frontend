@@ -1,4 +1,4 @@
-import anonReducer from '../../redux-anon-reducer';
+import anonReducer from 'redux-anon-reducer';
 import { createStore, applyMiddleware } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';

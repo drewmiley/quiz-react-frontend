@@ -30,6 +30,7 @@
   "dependencies": {
     "express": "^4.16.4",
     "react": "^16.5.1",
+    "redux-anon-reducer": "^1.0.0",
     "react-autocomplete": "^1.8.1",
     "react-dom": "^16.5.1",
     "react-redux": "^5.0.7",
