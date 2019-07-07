@@ -8,6 +8,7 @@ import history from './history';
 
 import { mapDispatchToProps } from './ducks/actions';
 
+import Answers from './routes/Answers';
 import Init from './routes/Init';
 import Leaderboards from './routes/Leaderboards';
 import Quiz from './routes/Quiz';
@@ -40,6 +41,13 @@ class App extends Component {
                     exact
                     render={(routeProps) => (
                         <Quiz {...this.props} />
+                    )}
+                />
+                <Route
+                    path="/answers/"
+                    exact
+                    render={(routeProps) => (
+                        <Answers {...this.props} />
                     )}
                 />
                 <Route
