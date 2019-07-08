@@ -1,8 +1,12 @@
 import React from 'react';
 
+import QuizAnswers from '../components/QuizAnswers';
+
 export default props => {
-    console.log(props);
     return <>
-        <p>"Answers"</p>
+        <QuizAnswers
+            code={props.code}
+            quiz={props.quiz}
+        />
     </>
 };
