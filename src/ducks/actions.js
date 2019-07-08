@@ -84,6 +84,7 @@ const submitAnswers = (user) => async (dispatch, getState) => {
         }
     }
     dispatch(submitAnswersAction(leaderboard.results));
+    history.push('/answers/');
 };
 
 const getLeaderboards = user => async dispatch => {
